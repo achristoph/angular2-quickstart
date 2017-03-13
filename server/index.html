@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>WebSocket</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<style type="text/css">
+html, body {
+  height: 100%;
+}
+</style>
+
+<script>
+
+$(function() {
+
+    var ws = new WebSocket("ws://localhost:8181");
+
+    ws.onopen = function(e) {
+      console.log('Connection to server opened');
+      ws.send(JSON.stringify({value: 'Hi from client!'}));
+    }
+    ws.onmessage = function(e) {
+      console.log('Server: ' + e.data);
+    }
+    ws.onclose = function(e) {
+      console.log("Connection closed" + e.reason + " " + e.code);
+    }
+
+    function disconnect() {
+      ws.close();
+    }
+});
+
+</script>
+
+</head>
+<body lang="en">
+    <div class="vertical-center">
+        <div class="container">
+          </div>
+    </div>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body></html>

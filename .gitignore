@@ -3,3 +3,4 @@
 /npm-debug.log
 .vscode/
 .DS_Store
+server/node_modules/
